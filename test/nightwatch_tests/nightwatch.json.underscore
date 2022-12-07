@@ -1,0 +1,57 @@
+{
+  "src_folders": <%= src_folders %>,
+  "custom_commands_path": <%= custom_commands_path %>,
+  "globals_path": "<%- globals_path %>",
+
+  "output_folder" : "./test/nightwatch_tests/reports",
+  "custom_assertions_path" : "",
+  "live_output" : false,
+
+  "webdriver": {
+    "start_process": true,
+    "ssl": false,
+    "password": "<%- password %>",
+    "host" : "127.0.0.1",
+    "port" : "<%- selenium_port %>"
+  },
+
+  "test_settings" : {
+    "default" : {
+      "fauxton_username": "<%- fauxton_username %>",
+      "password": "<%- password %>",
+      "launch_url": "http://<%- fauxton_host %>:<%- fauxton_port %>",
+      "db_url": "<%- db_protocol %>://<%- fauxton_username %>:<%- password %>@<%- db_host %>:<%- db_port %>",
+      "end_session_on_fail": false,
+      "skip_testcases_on_fail": true,
+      "selenium_host" : "127.0.0.1",
+      "selenium_port" : "<%- selenium_port %>",
+      "silent" : true,
+      "disable_colors": false,
+      "screenshots" : {
+        "enabled" : true,
+        "path" : "./test/nightwatch_tests/reports"
+      },
+      "desiredCapabilities" : {
+        "browserName" : "chrome",
+        "javascriptEnabled" : true,
+        "acceptSslCerts" : true,
+        "chromeOptions": {
+          "w3c": false
+        }
+      },
+      "exclude": <%= exclude_tests %>,
+      "skiptags": <%= skiptags %>
+    },
+
+    "chrome" : {
+      "desiredCapabilities" : {
+        "browserName" : "chrome",
+        "javascriptEnabled" : true,
+        "acceptSslCerts" : true,
+        "chromeOptions" : {
+          "args" : ["window-size=1400,900", "--no-sandbox", "--headless", "--disable-gpu", "--disable-dev-shm-usage", "--remote-debugging-port=9222"]
+        }
+      }
+    }
+  }
+}
